@@ -31,7 +31,12 @@
   template: src=etc_sysctl.d_couchbase-server.conf.j2 dest=/etc/sysctl.d/couchbase-server.conf owner=root group=root mode=0644
   notify: Update kernel settings
 
+- name: Detect if we're running in a Docker container
+  stat: path=/.dockerinit
+  register: dockerinit
+
 - name: Disable THP
   shell: echo 'for i in /sys/kernel/mm/*transparent_hugepage/enabled; do echo never > $i; done' >> /etc/rc.local
   shell: echo 'for i in /sys/kernel/mm/*transparent_hugepage/defrag; do echo never > $i; done' >> /etc/rc.local
   shell: for i in /sys/kernel/mm/*transparent_hugepage/enabled; do echo never > $i; done
+  when: not dockerinit.stat.exists
