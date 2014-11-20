@@ -4,13 +4,17 @@
 - name: Variables
   include_vars: "{{ ansible_os_family }}.yml"
 
+- name: Check if Couchbase Server is installed
+  stat: path=/opt/couchbase/VERSION.txt
+  register: v
+
 # CentOS/RHEL tasks
 - include: RedHat.yml
-  when: ansible_os_family  == "RedHat"
+  when: not v.stat.exists and ansible_os_family == "RedHat"
 
 # Debian/Ubuntu tasks
 - include: Debian.yml
-  when: ansible_os_family  == "Debian"
+  when: not v.stat.exists and ansible_os_family == "Debian"
 
 - name: Detect if we're running in a Docker container
   stat: path=/.dockerinit
