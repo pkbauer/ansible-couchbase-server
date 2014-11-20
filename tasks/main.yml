@@ -12,6 +12,10 @@
 - include: Debian.yml
   when: ansible_os_family  == "Debian"
 
+- name: Detect if we're running in a Docker container
+  stat: path=/.dockerinit
+  register: dockerinit
+
 - name: Update user limits
   copy: src=etc_security_limits.d_couchbase-server.conf dest=/etc/security/limits.d/couchbase-server.conf owner=root group=root mode=0644
 
@@ -26,14 +30,12 @@
 
 - name: Kernel settings dir
   file: dest=/etc/sysctl.d state=directory
+  when: not dockerinit.stat.exists
 
 - name: Kernel settings config
   template: src=etc_sysctl.d_couchbase-server.conf.j2 dest=/etc/sysctl.d/couchbase-server.conf owner=root group=root mode=0644
   notify: Update kernel settings
-
-- name: Detect if we're running in a Docker container
-  stat: path=/.dockerinit
-  register: dockerinit
+  when: not dockerinit.stat.exists
 
 - name: Disable THP
   shell: echo 'for i in /sys/kernel/mm/*transparent_hugepage/enabled; do echo never > $i; done' >> /etc/rc.local

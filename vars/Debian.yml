@@ -9,10 +9,15 @@
 # Comment out the 4 variables below and uncoment the variables below a
 # a version that you wish to install. This process will be improved soon
 
-couchbase_server_ubuntu_version: 3.0.0
-couchbase_server_ubuntu_package: couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64.deb
-couchbase_server_ubuntu_url: http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64.deb
-couchbase_server_ubuntu_sha256: 6914fb71d7e2fca314b7767f64a49cb45112f487f0d577239459f890a0a69b16
+couchbase_server_ubuntu_version: 3.0.1
+couchbase_server_ubuntu_package: couchbase-server-community_3.0.1-ubuntu12.04_amd64.deb
+couchbase_server_ubuntu_url: http://packages.couchbase.com/releases/3.0.1/couchbase-server-community_3.0.1-ubuntu12.04_amd64.deb
+couchbase_server_ubuntu_sha256: 59efbd8924969f71c9a6b438afea94d974db51607464c55d7a2d527368026150
+
+# couchbase_server_ubuntu_version: 3.0.0
+# couchbase_server_ubuntu_package: couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64.deb
+# couchbase_server_ubuntu_url: http://packages.couchbase.com/releases/3.0.0/couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64.deb
+# couchbase_server_ubuntu_sha256: 6914fb71d7e2fca314b7767f64a49cb45112f487f0d577239459f890a0a69b16
 
 # couchbase_server_ubuntu_version: 3.0.0
 # couchbase_server_ubuntu_package: couchbase-server-enterprise_3.0.0-ubuntu12.04_amd64.deb
